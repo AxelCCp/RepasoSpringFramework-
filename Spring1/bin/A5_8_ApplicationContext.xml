@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-3.1.xsd
+">
+
+	<!-- CLASE 12, CARGAMOS EL ARCHIVO DE PROPIEDADES EXTERNO A9_12_DatosEmpresaPropiedades -->
+	<context:property-placeholder location="classpath:A9_12_DatosEmpresaPropiedades"/>
+	
+	
+	
+
+	<!-- CREACIÓN DE LA DEPENDENCIA -->
+	<!-- LE DAMOS UN ID Y ESPECIFICAMOS LA CLASE CON LA RUTA, DEL TIPO DE BEANS A GENERAR -->
+	<bean id= "miInforme" class="A1_InversionOfControl_v2.A7_10_Informe"></bean>	
+
+	
+
+	<!-- CREAMOS MOTOR QUE NOS GENERARÁ LOS OBJETOS (BEANS) -->
+	<!--LE DAMOS UN ID Y (CLASS="")LE DECIMOS QUE GENERE OBJ'S DE ESTE TIPO -->
+	
+	<bean id="miEmpleado" class="A1_InversionOfControl_v2.A4_7_DirectorEmpleado">
+		<!-- CONFIGURACiÓN DE LA DEPENDENCIA PARA LOS OBJ'S DE TIPO "DirectorEmpleado-->
+		<constructor-arg ref="miInforme"></constructor-arg>	
+		<property name="email" value="${email}"></property>
+		<property name="nombreEmpresa" value="${nombreEmpresa}"></property>
+	</bean>
+	
+	
+	
+	<!-- CREAMOS MOTOR QUE NOS GENERARÁ LOS OBJETOS (BEANS) // AQUÍ USAMOS MÉTODO SETTER -->
+	
+	<bean id="miEmpleado2" class="A1_InversionOfControl_v2.A3_7_SecretarioEmpleado">
+	
+		<!-- CONFIGURACIÓN DE LA DEPENDENCIA. EN EL NAME VA EN NOMBRE DEL MÉTODO SET, PERO SIN EL SET Y 1RA LETRA MINÚSCULA -->
+		<property name="informeNuevo" ref="miInforme"></property>
+		
+		<!-- CONFIGURACIÓN PARA LA INYECCIÓN DE CAMPOS CON SETTER, DEL EMAIL Y EL NOMBRE DE LA EMPRESA -->
+		<property name="email" value="secretaria@pildoras.es"></property>
+		<property name="nombreEmpresa" value="Píldoras Informáticas"></property>
+		
+	</bean>
+	
+	
+</beans>
