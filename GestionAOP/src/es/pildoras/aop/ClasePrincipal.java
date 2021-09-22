@@ -16,7 +16,9 @@ public class ClasePrincipal {
 		ClienteVipDAO elClienteVip = contexto.getBean("clienteVipDAO",ClienteVipDAO.class);
 		
 		//LLAMAR AL MÉTODO
-		elCliente.insertaCliente();
+		Cliente cl1 = new Cliente();
+		elCliente.insertaCliente(cl1,"Normal");
+		
 		elClienteVip.insertaClienteVip();
 		
 		//CERRAR EL CONTEXTO	
